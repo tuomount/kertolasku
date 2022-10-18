@@ -180,13 +180,13 @@ public class MainFrame implements ActionListener {
         Language.ENGLISH))) {
       language = Language.ENGLISH;
       rebuildMenus();
-      frame.repaint();
+      changeState(State.MAIN_MENU);
     }
     if (e.getActionCommand().equals(Translation.languageName(
         Language.FINNISH))) {
       language = Language.FINNISH;
       rebuildMenus();
-      frame.repaint();
+      changeState(State.MAIN_MENU);
     }
     if (state == State.MAIN_MENU) {
       if (e.getActionCommand().equals(Commands.PRACTICE_TWO)) {
@@ -196,6 +196,70 @@ public class MainFrame implements ActionListener {
       if (e.getActionCommand().equals(Commands.TEST_TWO)) {
         startTest(Translation.test(language)
             + " " + Translation.secondTable(language), 2);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_THREE)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.thirdTable(language), 3);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_THREE)) {
+        startTest(Translation.test(language)
+            + " " + Translation.thirdTable(language), 3);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_FOUR)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.fourthTable(language), 4);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_FOUR)) {
+        startTest(Translation.test(language)
+            + " " + Translation.fourthTable(language), 4);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_FIVE)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.fifthTable(language), 5);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_FIVE)) {
+        startTest(Translation.test(language)
+            + " " + Translation.fifthTable(language), 5);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_SIX)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.sixthTable(language), 6);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_SIX)) {
+        startTest(Translation.test(language)
+            + " " + Translation.sixthTable(language), 6);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_SEVEN)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.seventhTable(language), 7);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_SEVEN)) {
+        startTest(Translation.test(language)
+            + " " + Translation.seventhTable(language), 7);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_EIGHT)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.eighthTable(language), 8);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_EIGHT)) {
+        startTest(Translation.test(language)
+            + " " + Translation.eighthTable(language), 8);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_NINE)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.ninethTable(language), 9);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_NINE)) {
+        startTest(Translation.test(language)
+            + " " + Translation.ninethTable(language), 9);
+      }
+      if (e.getActionCommand().equals(Commands.PRACTICE_TEN)) {
+        startPractice(Translation.practice(language)
+            + " " + Translation.tenthTable(language), 10);
+      }
+      if (e.getActionCommand().equals(Commands.TEST_TEN)) {
+        startTest(Translation.test(language)
+            + " " + Translation.tenthTable(language), 10);
       }
     }
     if (state == State.PRACTICE && practiceState != null) {

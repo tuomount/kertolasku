@@ -65,6 +65,54 @@ public class Translation {
     }
     return "Second multiplication table";
   }
+  public static final String thirdTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Kolmosen kertotaulu";
+    }
+    return "Third multiplication table";
+  }
+  public static final String fourthTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Neljäs kertotaulu";
+    }
+    return "Fourth multiplication table";
+  }
+  public static final String fifthTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Viides kertotaulu";
+    }
+    return "Fifth multiplication table";
+  }
+  public static final String sixthTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Kuudes kertotaulu";
+    }
+    return "Sixth multiplication table";
+  }
+  public static final String seventhTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Seitsemäs kertotaulu";
+    }
+    return "Seventh multiplication table";
+  }
+  public static final String eighthTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Kahdeksas kertotaulu";
+    }
+    return "Eighth multiplication table";
+  }
+  public static final String ninethTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Yhdeksäs kertotaulu";
+    }
+    return "Nineth multiplication table";
+  }
+  public static final String tenthTable(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Kymmenes kertotaulu";
+    }
+    return "Tenth multiplication table";
+  }
   public static final String failure(final Language language) {
     if (language == Language.FINNISH) {
       return "Et läpäisy koetta, yritä uudelleen";
