@@ -31,8 +31,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import org.kertolasku.States.EndState;
 import org.kertolasku.States.MainMenu;
 import org.kertolasku.States.PracticeState;
+import org.kertolasku.States.TestState;
 import org.kertolasku.translation.Language;
 import org.kertolasku.translation.Translation;
 
@@ -60,6 +62,10 @@ public class MainFrame implements ActionListener {
    */
   private PracticeState practiceState;
   /**
+   * Test state
+   */
+  private TestState testState;
+  /**
    * Application name
    */
   private static final String APPLICATION_NAME = "Kertolasku";
@@ -86,17 +92,40 @@ public class MainFrame implements ActionListener {
       frame.getContentPane().add(new MainMenu(this, language));
       frame.validate();
     }
+    if (state == State.FAILURE) {
+      frame.getContentPane().removeAll();
+      frame.getContentPane().add(new EndState(Translation.failure(language)));
+      frame.validate();
+    }
+    if (state == State.SUCCESS) {
+      frame.getContentPane().removeAll();
+      frame.getContentPane().add(new EndState(Translation.Success(language)));
+      frame.validate();
+    }
   }
 
   /**
-   * Change state.
-   * @param newState New state where to change.
+   * Start practice
+   * @param title Title for state
+   * @param number Number to practice
    */
   public void startPractice(final String title, final int number) {
     this.state = State.PRACTICE;
     frame.getContentPane().removeAll();
     practiceState = new PracticeState(title, number, this, language);
     frame.getContentPane().add(practiceState);
+    frame.validate();
+  }
+  /**
+   * Start test
+   * @param title Title for state
+   * @param number number to test
+   */
+  public void startTest(final String title, final int number) {
+    this.state = State.TEST;
+    frame.getContentPane().removeAll();
+    testState = new TestState(title, number, this, language);
+    frame.getContentPane().add(testState);
     frame.validate();
   }
 
@@ -164,10 +193,23 @@ public class MainFrame implements ActionListener {
         startPractice(Translation.practice(language)
             + " " + Translation.secondTable(language), 2);
       }
-      
+      if (e.getActionCommand().equals(Commands.TEST_TWO)) {
+        startTest(Translation.test(language)
+            + " " + Translation.secondTable(language), 2);
+      }
     }
     if (state == State.PRACTICE && practiceState != null) {
       practiceState.handleAction(e);
+    }
+    if (state == State.TEST && testState != null) {
+      testState.handleAction(e);
+      if (testState.isDone()) {
+        if (testState.isSuccess()) {
+          changeState(State.SUCCESS);
+        } else {
+          changeState(State.FAILURE);
+        }
+      }
     }
   }
 

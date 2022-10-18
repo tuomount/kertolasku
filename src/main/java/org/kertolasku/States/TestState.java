@@ -17,7 +17,7 @@
  * along with this program; if not, see http://www.gnu.org/licenses/
  *
  *
- * Practice JPanel
+ * Test JPanel
  *
  */
 package org.kertolasku.States;
@@ -37,7 +37,7 @@ import org.kertolasku.RandomNumber;
 import org.kertolasku.translation.Language;
 import org.kertolasku.translation.Translation;
 
-public class PracticeState extends JPanel {
+public class TestState extends JPanel {
 
   /**
    *
@@ -61,14 +61,6 @@ public class PracticeState extends JPanel {
    */
   private int correct;
   /**
-   * Score
-   */
-  private int score;
-  /**
-   * Correct ones in series
-   */
-  private int correctOnesInRow;
-  /**
    * Label for calculation
    */
   private JLabel calculationLabel;
@@ -76,10 +68,6 @@ public class PracticeState extends JPanel {
    * Label for total and correct
    */
   private JLabel totalLabel;
-  /**
-   * Label for score
-   */
-  private JLabel scoreLabel;
   /**
    * Answer field
    */
@@ -94,15 +82,13 @@ public class PracticeState extends JPanel {
    * @param number Which number to practice
    * @param listener Action Listener
    */
-  public PracticeState(final String title, final int number,
+  public TestState(final String title, final int number,
       final ActionListener listener, final Language language) {
     this.language = language;
     this.number = number;
     this.number2 = RandomNumber.getRandomJava(10) + 1;
     total = 0;
     correct = 0;
-    score = 0;
-    correctOnesInRow = 0;
     this.setLayout(new BorderLayout());
     JPanel top = new JPanel();
     JLabel label = new JLabel(title);
@@ -110,8 +96,6 @@ public class PracticeState extends JPanel {
     this.add(top, BorderLayout.NORTH);
     JPanel center = new JPanel();
     center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
-    scoreLabel = new JLabel("Score: 500000");
-    center.add(scoreLabel);
     totalLabel = new JLabel("Correct 100/12020");
     center.add(totalLabel);
     calculationLabel = new JLabel("8 kertaa 8 on yhtäkuin");
@@ -127,7 +111,6 @@ public class PracticeState extends JPanel {
   }
 
   private void updatePanel() {
-    scoreLabel.setText(Translation.score(language) + " " + score);
     totalLabel.setText(Translation.correct(language) + " " + correct + "/"
         + total);
     if (RandomNumber.getRandomJava(2) == 0) {
@@ -146,32 +129,6 @@ public class PracticeState extends JPanel {
         total++;
         if (result == number * number2) {
           correct++;
-          correctOnesInRow++;
-          switch (correctOnesInRow) {
-            case 1: score = score + 1; break;
-            case 3:
-            case 2: score = score + 2; break;
-            case 4: score = score + 5; break;
-            case 5:
-            case 6: score = score + 6;
-            case 8: score = score + 7;
-            case 7: score = score + 10; break;
-            case 9: score = score + 20; break;
-            case 10: score = score + 50; break;
-            case 11: score = score + 75; break;
-            case 12: score = score + 150; break;
-            case 13: score = score + 200; break;
-            case 14: score = score + 300; break;
-            case 15: score = score + 500; break;
-            case 16: score = score + 750; break;
-            case 17: score = score + 1000; break;
-            case 18: score = score + 1500; break;
-            case 19: score = score + 3000; break;
-            default:
-            case 20: score = score + 6000; break;
-          }
-        } else {
-          correctOnesInRow = 0;
         }
         this.number2 = RandomNumber.getRandomJava(10) + 1;
       } catch (NumberFormatException exp) {
@@ -179,5 +136,23 @@ public class PracticeState extends JPanel {
       }
       updatePanel();
     }
+  }
+
+  /**
+   * Is test done?
+   * @return True if done
+   */
+  public boolean isDone() {
+    if (total == 12) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean isSuccess() {
+    if (total == 12 && total == correct) {
+      return true;
+    }
+    return false;
   }
 }

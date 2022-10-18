@@ -65,6 +65,18 @@ public class Translation {
     }
     return "Second multiplication table";
   }
+  public static final String failure(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Et läpäisy koetta, yritä uudelleen";
+    }
+    return "You did not pass test, please try again.";
+  }
+  public static final String Success(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Onneksi olkoon läpäisit kokeen!";
+    }
+    return "Congratulation you passed exam!";
+  }
 
   public static final String score(final Language language) {
     if (language == Language.FINNISH) {

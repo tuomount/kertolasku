@@ -17,15 +17,28 @@
  * along with this program; if not, see http://www.gnu.org/licenses/
  *
  *
- * State enumeration
+ * End state
  *
  */
-package org.kertolasku;
+package org.kertolasku.States;
 
-public enum State {
-  MAIN_MENU,
-  PRACTICE,
-  TEST,
-  FAILURE,
-  SUCCESS
+import java.awt.BorderLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class EndState extends JPanel {
+
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+
+  public EndState(final String title) {
+    this.setLayout(new BorderLayout());
+    JPanel center = new JPanel();
+    JLabel label = new JLabel(title);
+    center.add(label);
+    this.add(center, BorderLayout.CENTER);
+  }
 }
