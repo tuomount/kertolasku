@@ -25,6 +25,8 @@ package org.kertolasku.States;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -117,8 +119,29 @@ public class PracticeState extends JPanel {
     calculationLabel = new JLabel("8 kertaa 8 on yhtäkuin");
     center.add(calculationLabel);
     answer = new JTextField();
+    answer.addKeyListener(new KeyListener() {
+      
+      @Override
+      public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
+      }
+      
+      @Override
+      public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
+      }
+      
+      @Override
+      public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+          listener.actionPerformed(new ActionEvent(answer, 1, Commands.ANSWER));
+        }
+      }
+    });
     center.add(answer);
-    JButton btn = new JButton("Answer");
+    JButton btn = new JButton(Translation.answer(language));
     btn.addActionListener(listener);
     btn.setActionCommand(Commands.ANSWER);
     center.add(btn);
@@ -140,7 +163,8 @@ public class PracticeState extends JPanel {
   }
 
   public void handleAction(final ActionEvent e) {
-    if (e.getActionCommand().equals(Commands.ANSWER)) {
+    if (e.getActionCommand().equals(Commands.ANSWER)
+        && !answer.getText().isEmpty()) {
       try {
         int result = Integer.parseInt(answer.getText());
         total++;
@@ -174,6 +198,7 @@ public class PracticeState extends JPanel {
           correctOnesInRow = 0;
         }
         this.number2 = RandomNumber.getRandomJava(10) + 1;
+        answer.setText("");
       } catch (NumberFormatException exp) {
         // Do nothing
       }

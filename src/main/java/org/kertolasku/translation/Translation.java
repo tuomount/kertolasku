@@ -166,4 +166,11 @@ public class Translation {
     return "English";
   }
 
+  public static final String answer(final Language language) {
+    if (language == Language.FINNISH) {
+      return "Vastaa";
+    }
+    return "Answer";
+  }
+
 }
